@@ -20,12 +20,14 @@
 #include "vector_remove.h"
 #include "vector_find.h"
 
+#include "vector_disorder.h"
 #include "vector_deduplicate.h"
 #include "vector_uniquify.h"
 #include "vector_traverse.h"
 #include "vector_increase.h"
 #include "vector_binsearch.h"
 #include "vector_fibsearch.h"
+#include "vector_insetion_search.h"
 #include "vector_search.h"
 
 
