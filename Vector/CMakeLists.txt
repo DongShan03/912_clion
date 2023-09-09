@@ -19,6 +19,8 @@ set(CMAKE_CXX_STANDARD 11)
 #指定编译选项
 set(CMAKE_BUILD_TYPE Debug )
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fexec-charset=GBK")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fexec-charset=GBK")
 #指定编译目录
 #set(PROJECT_BINARY_DIR ${PROJECT_SOURCE_DIR}/build)
 

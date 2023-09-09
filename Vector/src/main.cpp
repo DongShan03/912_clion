@@ -149,5 +149,12 @@
 
 #include "../include/vector.h"
 int main(){
+    Vector<int> x;
+    for(int i = 0; i < 3; i++) {
+        x.insert(0, i );
+    }
+    x.insert(0, 1);
+    int n = x.deduplicate();
+    std::cout << "the number of deleted element is:" << n << "\n";
     return 0;
 }
