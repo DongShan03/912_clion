@@ -15,4 +15,14 @@ void increase(Vector<T>& V) {
     V.traverse(Increase<T>());   //遍历并加一
 }
 
+template <typename T>
+struct Decrease{ //函数对象：通过重载操作符"()"实现
+            virtual void operator()(T& e) {e--;}
+        };
+
+template <typename T>
+void decrease(Vector<T>& V) {
+    V.traverse(Decrease<T>());   //遍历并加一
+}
+
 #endif //INC_912VECTOR_VECTOR_INCREASE_H
