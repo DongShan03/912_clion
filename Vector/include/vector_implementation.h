@@ -30,6 +30,10 @@
 #include "vector_insetion_search.h"
 #include "vector_search.h"
 
+#include "vector_mergesort.h"
+#include "vector_bubblesort.h"
+#include "vector_sort.h"
+
 
 #include "permute.h"
 

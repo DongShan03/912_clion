@@ -148,14 +148,20 @@
 //}
 
 #include "../include/vector.h"
+
 int main(){
     Vector<int> x;
-    for(int i = 0; i < 10; i++) {
+    for(int i = 0; i < 50; i++) {
         x.insert(0, i );
     }
-    for(int i = 0; i < x.size(); i++)
-    {
-        std::cout << i << "\t";
+    permute(x);
+    for(int i = 0; i < 50; i++) {
+        std::cout << x[i] << "\t";
+    }
+    std::cout << "\n";
+    x.sort();
+    for(int i = 0; i < 50; i++) {
+        std::cout << x[i] << "\t";
     }
     return 0;
 }
