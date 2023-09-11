@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(912Stack)
+project(912Queue)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -14,18 +14,14 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 # Include the 'include' directory to access header files
-include_directories(include ../list/include ../vector/include)
+include_directories(include ../_share ../list/include ../vector/include)
 
 # Add the 'src' directory to build the main executable
 add_subdirectory(src)
 
-# Link the 'vector' library from the 'vector' project
-
 
 # Add your main executable target
-add_executable(912Stack src/main.cpp)
+add_executable(912Queue src/main.cpp)
 
-# Link the main executable with the "Vector" library (if needed)
-target_link_libraries(912Stack PUBLIC Stack)
-
-
+# Link the main executable with the "Queue" library (if needed)
+target_link_libraries(912Queue Queue)
