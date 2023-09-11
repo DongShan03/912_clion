@@ -53,7 +53,7 @@ public:
    ListNodePosi<T> insert( T const& e, ListNodePosi<T> p ); //将e当作p的前驱插入
    T remove( ListNodePosi<T> p ); //删除合法位置p处的节点,返回被删除节点
    void merge( List<T>& L ) { merge( header->succ, _size, L, L.header->succ, L._size ); } //全列表归并
-   void sort( ListNodePosi<T>, Rank ); //列表区间排序
+   void sort( ListNodePosi<T> p, Rank r); //列表区间排序
    void sort() { sort( first(), _size ); } //列表整体排序
    Rank dedup(); //无序去重
    Rank uniquify(); //有序去重

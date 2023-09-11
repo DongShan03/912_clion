@@ -8,7 +8,7 @@
 template <typename T>
 ListNodePosi<T> List<T>::selectMax(ListNodePosi<T> p, Rank n) { //从后n个节点中选出最大的节点
     ListNodePosi<T> max = p;
-    while (n--) {
+    while (1 < n--) {
         if ((p = p->succ)->data >= max->data) max = p;
     }
     return max;

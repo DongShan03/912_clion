@@ -5,6 +5,9 @@
 #ifndef INC_912LIST_LIST_IMPLEMENTATION_H
 #define INC_912LIST_LIST_IMPLEMENTATION_H
 
+
+
+
 #include "listnode.h"
 #include "list_copynode.h"
 
@@ -26,5 +29,9 @@
 #include "list_traverse.h"
 #include "list_reverse.h"
 
+#include "list_selectionsort.h"
+#include "list_insertionsort.h"
+#include "list_mergesort.h"
+#include "list_sort.h"
 
 #endif //INC_912LIST_LIST_IMPLEMENTATION_H

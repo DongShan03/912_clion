@@ -14,7 +14,7 @@ void List<T>::reverseA() {
         swap((p=p->succ)->data, (q=q->pred)->data); //交换对称节点的数据项
     }
 }
-完善基本功能
+//完善基本功能
 template <typename T>
 void List<T>::reverseB() {
     if (_size < 2) return;
