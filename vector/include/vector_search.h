@@ -10,7 +10,7 @@ Rank Vector<T>::search(const T &e, Rank lo, Rank hi) const {
     assert(lo <= hi);
     return (rand() % 2) ?
         binSearch(_elem, e, lo, hi)
-        :fibSearch(_elem, e, lo, hi);
+        :fibSearch(_elem, e, lo, hi)
 }
 
 #endif //INC_912VECTOR_VECTOR_SEARCH_H
