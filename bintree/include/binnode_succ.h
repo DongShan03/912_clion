@@ -5,7 +5,8 @@
 #ifndef INC_912BINTREE_BINNODE_SUCC_H
 #define INC_912BINTREE_BINNODE_SUCC_H
 
-template <typename T> BinNodePosi<T> BinNode<T>::succ() { //定位节点v的直接后继
+template <typename T>
+BinNodePosi<T> BinNode<T>::succ() { //定位节点v的直接后继
    BinNodePosi<T> s = this; //记录后继的临时变量
    if ( rc ) { //若有右孩子，则直接后继必在右子树中，具体地就是
       s = rc; //右子树中

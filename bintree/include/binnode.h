@@ -37,10 +37,11 @@ template <typename T> struct BinNode { //二叉树节点模板类
    BinNodePosi<T> insertAsLC( T const& e); //作为当前节点的左孩子插入新节点
    BinNodePosi<T> insertAsRC( T const& e); //作为当前节点的右孩子插入新节点
    BinNodePosi<T> succ(); //取当前节点的直接后继
-   template <typename VST> void travLevel( VST& ); //子树层次遍历
-   template <typename VST> void travPre( VST& ); //子树先序遍历
-   template <typename VST> void travIn( VST& ); //子树中序遍历
-   template <typename VST> void travPost( VST& ); //子树后序遍历
+   BinNodePosi<T> pred(); //取当前节点的直接前驱
+   template <typename VST> void travLevel(BinNodePosi<T> x, VST& visit); //子树层次遍历
+   template <typename VST> void travPre(VST& visit); //子树先序遍历
+   template <typename VST> void travIn(BinNodePosi<T> x, VST& visit); //子树中序遍历
+   template <typename VST> void travPost(BinNodePosi<T> x, VST& visit); //子树后序遍历
 // 比较器、判等器（各列其一，其余自行补充）
    bool operator< ( BinNode const& bn ) { return data < bn.data; } //小于
    bool operator== ( BinNode const& bn ) { return data == bn.data; } //等于

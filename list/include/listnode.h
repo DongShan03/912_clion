@@ -7,7 +7,7 @@
 
 #include <cstddef>
 #include "../../_share/swap.h"
-typedef int Rank; //秩
+using Rank = unsigned int; //秩
 
 template <typename T> struct ListNode;
 template <typename T> using ListNodePosi = ListNode<T>*; //列表节点位置

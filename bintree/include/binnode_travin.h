@@ -1,0 +1,8 @@
+//
+// Created by huang on 23-9-12.
+//
+
+#ifndef INC_912BINTREE_BINNODE_TRAVIN_H
+#define INC_912BINTREE_BINNODE_TRAVIN_H
+
+#endif //INC_912BINTREE_BINNODE_TRAVIN_H

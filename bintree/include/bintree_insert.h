@@ -15,7 +15,7 @@ BinNodePosi<T> BinTree<T>::insert(BinNodePosi<T> x, const T &e) {
 
 template <typename T>
 BinNodePosi<T> BinTree<T>::insert(const T &e, BinNodePosi<T> x) {
-    assert(!x->rc);
+    assert(!x->lc);
     x->insertAsLC(e); _size++;
     updateHeight(x);
     return x->lc;
