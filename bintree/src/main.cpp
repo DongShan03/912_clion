@@ -3,7 +3,7 @@
 //
 
 
-#include "../include/bintree_implementation.h"
+#include "../include/bintree.h"
 
 int main() {
     return 0;
