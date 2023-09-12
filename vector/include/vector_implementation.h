@@ -14,6 +14,7 @@
 
 #include "vector_constructor_by_copying.h"
 #include "vector_expand.h"
+#include "vector_max.h"
 #include "vector_shrink.h"
 #include "vector_bracket.h"
 #include "vector_insert.h"
