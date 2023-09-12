@@ -7,7 +7,7 @@
 
 
 int main() {
-    visitData<int> visitor;
+    visitData<int> visitor;   //·ÃÎÊº¯Êý
     BinNode<int>* root = new BinNode<int>(1);
     root->lc = new BinNode<int>(2);
     root->rc = new BinNode<int>(3);

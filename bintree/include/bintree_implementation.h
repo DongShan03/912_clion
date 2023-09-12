@@ -6,6 +6,7 @@
 #define INC_912BINTREE_BINTREE_IMPLEMENTATION_H
 
 #include "../../stack/include/stack_vector.h"
+#include "../../queue/include/queue_list.h"
 
 #include "bintree_updateheight.h"
 #include "bintree_attach.h"
