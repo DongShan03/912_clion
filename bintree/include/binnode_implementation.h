@@ -5,10 +5,9 @@
 #ifndef INC_912BINTREE_BINNODE_IMPLEMENTATION_H
 #define INC_912BINTREE_BINNODE_IMPLEMENTATION_H
 
-#include <iostream>
 #include "binnode_macro.h"
 #include "../../_share/release.h"
-#include "binnode_traverse.h"
+#include "../../_share/visit_elem.h"
 
 #include "binnode_insert.h"
 #include "binnode_size.h"

@@ -14,7 +14,6 @@
 #include "bintree_secede.h"
 #include "bintree_insert.h"
 
-#include "binnode_traverse.h"
 #include "binnode_travlevel.h"
 #include "binnode_travin.h"
 #include "binnode_travpost.h"
