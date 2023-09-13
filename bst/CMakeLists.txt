@@ -14,7 +14,7 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 # Include the 'include' directory to access header files
-include_directories(include ../list/include ../vector/include ../bintree/include)
+include_directories(include ../list/include ../vector/include ../bintree/include ../_share)
 
 # Add the 'src' directory to build the main executable
 add_subdirectory(src)
