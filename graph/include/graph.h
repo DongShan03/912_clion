@@ -14,51 +14,56 @@ using EType = enum { UNDETERMINED, TREE, CROSS, FORWARD, BACKWARD }; //±ßÔÚ±éÀúÊ
 template <typename Tv, typename Te> //¶¥µãÀàĞÍ¡¢±ßÀàĞÍ
 class Graph { //Í¼GraphÄ£°åÀà
 private:
-   void reset() { //ËùÓĞ¶¥µã¡¢±ßµÄ¸¨ÖúĞÅÏ¢¸´Î»
-      for ( Rank v = 0; v < n; v++ ) { //ËùÓĞ¶¥µãµÄ
-         status( v ) = UNDISCOVERED; dTime( v ) = fTime( v ) = -1; //×´Ì¬£¬Ê±¼ä±êÇ©
-         parent( v ) = -1; priority( v ) = INT_MAX; //£¨ÔÚ±éÀúÊ÷ÖĞµÄ£©¸¸½Úµã£¬ÓÅÏÈ¼¶Êı
-         for ( Rank u = 0; u < n; u++ ) //ËùÓĞ±ßµÄ
-            if ( exists( v, u ) ) type( v, u ) = UNDETERMINED; //ÀàĞÍ
-      }
-   }
-   void BFS( Rank, Rank& ); //£¨Á¬Í¨Óò£©¹ã¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void DFS( Rank, Rank& ); //£¨Á¬Í¨Óò£©Éî¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void BCC( Rank, Rank&, StackVector<Rank>& ); //£¨Á¬Í¨Óò£©»ùÓÚDFSµÄË«Á¬Í¨·ÖÁ¿·Ö½âËã·¨
-   bool TSort( Rank, Rank&, StackVector<Tv>* ); //£¨Á¬Í¨Óò£©»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨
-   template <typename PU> void PFS( Rank, PU ); //£¨Á¬Í¨Óò£©ÓÅÏÈ¼¶ËÑË÷¿ò¼Ü
+    void reset() { //ËùÓĞ¶¥µã¡¢±ßµÄ¸¨ÖúĞÅÏ¢¸´Î»
+        for (Rank v = 0; v < n; v++) { //ËùÓĞ¶¥µãµÄ
+            status(v) = UNDISCOVERED;
+            dTime(v) = fTime(v) = -1; //×´Ì¬£¬Ê±¼ä±êÇ©
+            parent(v) = -1;
+            priority(v) = INT_MAX; //£¨ÔÚ±éÀúÊ÷ÖĞµÄ£©¸¸½Úµã£¬ÓÅÏÈ¼¶Êı
+            for (Rank u = 0; u < n; u++) //ËùÓĞ±ßµÄ
+                if (exists(v, u)) type(v, u) = UNDETERMINED; //ÀàĞÍ
+        }
+    }
+
+    void BFS(Rank, Rank &); //£¨Á¬Í¨Óò£©¹ã¶ÈÓÅÏÈËÑË÷Ëã·¨
+    void DFS(Rank, Rank &); //£¨Á¬Í¨Óò£©Éî¶ÈÓÅÏÈËÑË÷Ëã·¨
+    void BCC(Rank, Rank &, StackVector<Rank> &); //£¨Á¬Í¨Óò£©»ùÓÚDFSµÄË«Á¬Í¨·ÖÁ¿·Ö½âËã·¨
+    bool TSort(Rank, Rank &, StackVector<Tv> *); //£¨Á¬Í¨Óò£©»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨
+    template<typename PU>
+    void PFS(Rank, PU); //£¨Á¬Í¨Óò£©ÓÅÏÈ¼¶ËÑË÷¿ò¼Ü
 public:
 // ¶¥µã
-   Rank n; //¶¥µã×ÜÊı
-   virtual Rank insert( Tv const& ) = 0; //²åÈë¶¥µã£¬·µ»Ø±àºÅ
-   virtual Tv remove( Rank ) = 0; //É¾³ı¶¥µã¼°Æä¹ØÁª±ß£¬·µ»Ø¸Ã¶¥µãĞÅÏ¢
-   virtual Tv& vertex( Rank ) = 0; //¶¥µãµÄÊı¾İ£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
-   virtual Rank inDegree( Rank ) = 0; //¶¥µãµÄÈë¶È£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
-   virtual Rank outDegree( Rank ) = 0; //¶¥µãµÄ³ö¶È£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
-   virtual Rank firstNbr( Rank ) = 0; //¶¥µãµÄÊ×¸öÁÚ½Ó¶¥µã
-   virtual Rank nextNbr( Rank, Rank ) = 0; //¶¥µã£¨Ïà¶Ôµ±Ç°ÁÚ¾ÓµÄ£©ÏÂÒ»ÁÚ¾Ó
-   virtual VStatus& status( Rank ) = 0; //¶¥µãµÄ×´Ì¬
-   virtual Rank& dTime( Rank ) = 0; //¶¥µãµÄÊ±¼ä±êÇ©dTime
-   virtual Rank& fTime( Rank ) = 0; //¶¥µãµÄÊ±¼ä±êÇ©fTime
-   virtual Rank& parent( Rank ) = 0; //¶¥µãÔÚ±éÀúÊ÷ÖĞµÄ¸¸Ç×
-   virtual int& priority( Rank ) = 0; //¶¥µãÔÚ±éÀúÊ÷ÖĞµÄÓÅÏÈ¼¶Êı
+    Rank n; //¶¥µã×ÜÊı
+    virtual Rank insert(Tv const &) = 0; //²åÈë¶¥µã£¬·µ»Ø±àºÅ
+    virtual Tv remove(Rank) = 0; //É¾³ı¶¥µã¼°Æä¹ØÁª±ß£¬·µ»Ø¸Ã¶¥µãĞÅÏ¢
+    virtual Tv &vertex(Rank) = 0; //¶¥µãµÄÊı¾İ£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
+    virtual Rank inDegree(Rank) = 0; //¶¥µãµÄÈë¶È£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
+    virtual Rank outDegree(Rank) = 0; //¶¥µãµÄ³ö¶È£¨¸Ã¶¥µãµÄÈ·´æÔÚ£©
+    virtual Rank firstNbr(Rank) = 0; //¶¥µãµÄÊ×¸öÁÚ½Ó¶¥µã
+    virtual Rank nextNbr(Rank, Rank) = 0; //¶¥µã£¨Ïà¶Ôµ±Ç°ÁÚ¾ÓµÄ£©ÏÂÒ»ÁÚ¾Ó
+    virtual VStatus &status(Rank) = 0; //¶¥µãµÄ×´Ì¬
+    virtual Rank &dTime(Rank) = 0; //¶¥µãµÄÊ±¼ä±êÇ©dTime
+    virtual Rank &fTime(Rank) = 0; //¶¥µãµÄÊ±¼ä±êÇ©fTime
+    virtual Rank &parent(Rank) = 0; //¶¥µãÔÚ±éÀúÊ÷ÖĞµÄ¸¸Ç×
+    virtual int &priority(Rank) = 0; //¶¥µãÔÚ±éÀúÊ÷ÖĞµÄÓÅÏÈ¼¶Êı
 // ±ß£ºÕâÀïÔ¼¶¨£¬ÎŞÏò±ß¾ùÍ³Ò»×ª»¯Îª·½Ïò»¥ÄæµÄÒ»¶ÔÓĞÏò±ß£¬´Ó¶ø½«ÎŞÏòÍ¼ÊÓ×÷ÓĞÏòÍ¼µÄÌØÀı
-   Rank e; //±ß×ÜÊı
-   virtual bool exists( Rank, Rank ) = 0; //±ß(v, u)ÊÇ·ñ´æÔÚ
-   virtual void insert( Te const&, int, Rank, Rank ) = 0; //ÔÚÁ½¸ö¶¥µãÖ®¼ä²åÈëÖ¸¶¨È¨ÖØµÄ±ß
-   virtual Te remove( Rank, Rank ) = 0; //É¾³ıÒ»¶Ô¶¥µãÖ®¼äµÄ±ß£¬·µ»Ø¸Ã±ßĞÅÏ¢
-   virtual EType& type( Rank, Rank ) = 0; //±ßµÄÀàĞÍ
-   virtual Te& edge( Rank, Rank ) = 0; //±ßµÄÊı¾İ£¨¸Ã±ßµÄÈ·´æÔÚ£©
-   virtual int& weight( Rank, Rank ) = 0; //±ß(v, u)µÄÈ¨ÖØ
+    Rank e; //±ß×ÜÊı
+    virtual bool exists(Rank, Rank) = 0; //±ß(v, u)ÊÇ·ñ´æÔÚ
+    virtual void insert(Te const &, int, Rank, Rank) = 0; //ÔÚÁ½¸ö¶¥µãÖ®¼ä²åÈëÖ¸¶¨È¨ÖØµÄ±ß
+    virtual Te remove(Rank, Rank) = 0; //É¾³ıÒ»¶Ô¶¥µãÖ®¼äµÄ±ß£¬·µ»Ø¸Ã±ßĞÅÏ¢
+    virtual EType &type(Rank, Rank) = 0; //±ßµÄÀàĞÍ
+    virtual Te &edge(Rank, Rank) = 0; //±ßµÄÊı¾İ£¨¸Ã±ßµÄÈ·´æÔÚ£©
+    virtual int &weight(Rank, Rank) = 0; //±ß(v, u)µÄÈ¨ÖØ
 // Ëã·¨
-   void bfs( Rank ); //¹ã¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void dfs( Rank ); //Éî¶ÈÓÅÏÈËÑË÷Ëã·¨
-   void bcc( Rank ); //»ùÓÚDFSµÄË«Á¬Í¨·ÖÁ¿·Ö½âËã·¨
-   StackVector<Tv>* tSort( Rank ); //»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨
-   void prim( Rank ); //×îĞ¡Ö§³ÅÊ÷PrimËã·¨
-   void dijkstra( Rank ); //×î¶ÌÂ·¾¶DijkstraËã·¨
-   template <typename PU> void pfs( Rank, PU ); //ÓÅÏÈ¼¶ËÑË÷¿ò¼Ü
-
+    void bfs(Rank); //¹ã¶ÈÓÅÏÈËÑË÷Ëã·¨
+    void dfs(Rank); //Éî¶ÈÓÅÏÈËÑË÷Ëã·¨
+    void bcc(Rank); //»ùÓÚDFSµÄË«Á¬Í¨·ÖÁ¿·Ö½âËã·¨
+    StackVector<Tv> *tSort(Rank); //»ùÓÚDFSµÄÍØÆËÅÅĞòËã·¨
+    void prim(Rank); //×îĞ¡Ö§³ÅÊ÷PrimËã·¨
+    void dijkstra(Rank); //×î¶ÌÂ·¾¶DijkstraËã·¨
+    template<typename PU>
+    void pfs(Rank, PU); //ÓÅÏÈ¼¶ËÑË÷¿ò¼Ü
+};
 #include "graph_implementation.h"
 
 #endif //INC_912_CLION_GRAPH_H

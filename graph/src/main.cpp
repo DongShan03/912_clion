@@ -6,5 +6,6 @@
 #include "../include/graph_matrix.h"
 
 int main() {
+    GraphMatrix<char, int> GM;
     return 0;
 };
