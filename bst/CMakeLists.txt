@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(912Vector)
+project(912Bst)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -14,19 +14,18 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 # Include the 'include' directory to access header files
-include_directories(include ../_share ../fib ../bitmap)
+include_directories(include ../list/include ../vector/include ../bintree/include)
 
 # Add the 'src' directory to build the main executable
 add_subdirectory(src)
 
+# Link the 'vector' library from the 'vector' project
+
 
 # Add your main executable target
-add_executable(912Vector src/main.cpp)
+add_executable(912Bst src/main.cpp)
 
-# Link the main executable with the "Vector" library (if needed)
-target_link_libraries(912Vector Vector)
+# Link the main executable with the "Bst" library (if needed)
+target_link_libraries(912Bst PUBLIC Bst)
 
 
-
-# 将运行Python脚本的目标与构建目标关联起来
-#add_dependencies(912Vector run_python_scripts)
